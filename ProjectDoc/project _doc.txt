@@ -1,0 +1,301 @@
+user = ab_project
+password = abproject
+
+CREATE TABLE Course
+(
+    course_id INT AUTO_INCREMENT PRIMARY KEY,
+    course_name VARCHAR(50)
+);
+
+INSERT INTO 
+Course
+VALUES(1,'PG-DMC');
+
+CREATE TABLE Batch
+(
+    batch_id INT AUTO_INCREMENT PRIMARY KEY,
+    batch_name VARCHAR(50),
+    course_id INT,
+    CONSTRAINT FK_batch_course_id FOREIGN KEY (course_id)
+    REFERENCES Course(course_id)
+);
+
+INSERT INTO 
+Batch
+VALUES(1,'DMC-AUG-2019[W2]',1);
+
+CREATE TABLE Student
+(
+    stud_id INT AUTO_INCREMENT PRIMARY KEY,
+    stud_name VARCHAR(50) NOT NULL,
+    stud_email VARCHAR(50) NOT NULL,
+    stud_prn DOUBLE NOT NULL,
+    stud_gender VARCHAR(10) NOT NULL,
+    stud_bdate DATE NOT NULL,
+    stud_propic VARCHAR(200) NOT NULL,
+    stud_password VARCHAR(50) NOT NULL,
+    course_id INT,
+    batch_id INT,
+    CONSTRAINT FK_stud_course_id FOREIGN KEY (course_id)
+    REFERENCES Course(course_id),
+    CONSTRAINT FK_batch_id FOREIGN KEY (batch_id)
+    REFERENCES Batch(batch_id)
+);
+
+INSERT INTO 
+Student 
+VALUES(32175,'Arti Eknath Bokse','artibokse@gmail.com',190844221009,'Female','1993-10-02','www.google.com','artibokse210',1,1);
+
+INSERT INTO 
+Student 
+VALUES(32168,'Pranjal Punja Rahinj','ishwarirahinj275@gmail.com',190844221031,'Female','1996-10-29','www.google.com','pranjalrahinj210',1,1);
+
+CREATE TABLE FacultyType
+(
+    factype_id INT AUTO_INCREMENT PRIMARY KEY,
+    factype_name VARCHAR(50) NOT NULL
+);
+
+INSERT INTO
+FacultyType
+VALUES(1,'Course Co-ordinator');
+INSERT INTO
+FacultyType
+VALUES(2,'Teaching Faculty');
+INSERT INTO
+FacultyType
+VALUES(3,'Admin');
+
+CREATE TABLE Faculty
+(
+    fac_id INT AUTO_INCREMENT PRIMARY KEY,
+    fac_name VARCHAR(50) NOT NULL,
+    fac_email VARCHAR(50) NOT NULL,
+    factype_id INT,
+    fac_gender VARCHAR(10) NOT NULL,
+    fac_propic VARCHAR(200) NOT NULL,
+    fac_bdate DATE NOT NULL,
+    fac_password VARCHAR(50) NOT NULL,
+    CONSTRAINT FK_factype_id FOREIGN KEY (factype_id)
+    REFERENCES FacultyType(factype_id)
+);
+
+INSERT INTO
+Faculty
+VALUES(101,'Rohan Parmane','rohanparmane@gmail.com',1,'Male','www.gmail.com','1990-10-10','rohanparmane123');
+INSERT INTO
+Faculty
+VALUES(102,'Sachin Pawar','sachinpawar@gmail.com',2,'Male','www.gmail.com','1987-01-01','sachinpawar123');
+INSERT INTO
+Faculty
+VALUES(103,'Admin','admin@gmail.com',3,'Male','www.gmail.com','1980-10-10','admin123');
+
+CREATE TABLE CourseCo
+(
+    coco_id INT AUTO_INCREMENT PRIMARY KEY,
+    course_id INT,
+    batch_id INT,
+    fac_id INT,
+    CONSTRAINT FK_coco_course_id FOREIGN KEY (course_id)
+    REFERENCES Course(course_id),
+    CONSTRAINT FK_coco_batch_id FOREIGN KEY (batch_id)
+    REFERENCES Batch(batch_id),
+    CONSTRAINT FK_coco_fac_id FOREIGN KEY (fac_id)
+    REFERENCES Faculty(fac_id)
+);
+
+INSERT INTO
+CourseCo
+VALUES(1,1,1,101);
+
+CREATE TABLE Queries
+(
+
+    qry_id INT AUTO_INCREMENT PRIMARY KEY,
+    qry_title VARCHAR(50) NOT NULL,
+    qry_description VARCHAR(300) NOT NULL,
+    qry_type VARCHAR(50) NOT NULL,
+    stud_id INT,
+    CONSTRAINT FK_queries_stud_id FOREIGN KEY (stud_id)
+    REFERENCES Student(stud_id)
+);
+
+INSERT INTO
+Queries
+VALUES(1,'Time table related','Sir please send tomorrow time table for lecture and lab','Other',32175);
+
+CREATE TABLE QryAns
+(
+    qryans_id INT AUTO_INCREMENT PRIMARY KEY,
+    qryans_ans VARCHAR(300) NOT NULL,
+    qry_id INT,
+    CONSTRAINT FK_qryans_quries_id FOREIGN KEY (qry_id)
+    REFERENCES Queries(qry_id)
+);
+
+INSERT INTO
+QryAns
+VALUES(1,'Ok it will be uploaded in daily schedule section soon',1);
+
+CREATE TABLE Venue
+(
+    venue_id INT AUTO_INCREMENT PRIMARY KEY,
+    venue_name VARCHAR(50) NOT NULL
+);
+
+INSERT INTO
+Venue
+VALUES(1,'Pravara');
+INSERT INTO
+Venue
+VALUES(2,'Purna');
+INSERT INTO
+Venue
+VALUES(3,'Krishna');
+INSERT INTO
+Venue
+VALUES(4,'Koyana');
+
+CREATE TABLE Subject
+(
+    sub_id INT AUTO_INCREMENT PRIMARY KEY,
+    sub_name VARCHAR(50) NOT NULL,
+);
+
+CREATE TABLE CourseSub
+(
+    cosub_id INT AUTO_INCREMENT PRIMARY KEY,
+    course_id INT,
+    sub_id INT,
+    CONSTRAINT FK_cosub_course_id FOREIGN KEY (course_id)
+    REFERENCES Course(course_id),
+    CONSTRAINT FK_cosub_sub_id FOREIGN KEY (sub_id)
+    REFERENCES Subject(sub_id)
+);
+
+CREATE TABLE Question
+(
+    qs_id INT AUTO_INCREMENT PRIMARY KEY,
+    qs_description VARCHAR(200) NOT NULL,
+    sub_id INT,
+    stud_id INT,
+    CONSTRAINT FK_qs_sub_id FOREIGN KEY (sub_id)
+    REFERENCES Subject(sub_id),
+    CONSTRAINT FK_qs_stud_id FOREIGN KEY (stud_id)
+    REFERENCES Student(stud_id)
+);
+
+CREATE TABLE Options
+(
+    opt_id INT AUTO_INCREMENT PRIMARY KEY,
+    opt_desc VARCHAR(200) NOT NULL,
+    qs_id INT,
+    CONSTRAINT FK_opt_qs_id FOREIGN KEY (qs_id)
+    REFERENCES Question(qs_id)
+);
+
+alter table QsAns ADD column qsans_qsansdesc VARCHAR(300);
+CREATE TABLE QsAns
+(
+    qsans_id INT AUTO_INCREMENT PRIMARY KEY,
+    qs_id INT,
+    opt_id INT,
+    qsans_qsansdesc VARCHAR(300),
+    CONSTRAINT FK_qsans_qs_id FOREIGN KEY (qs_id)
+    REFERENCES Question(qs_id),
+    CONSTRAINT FK_qsans_opt_id FOREIGN KEY (opt_id)
+    REFERENCES Options(opt_id)
+);
+
+CREATE TABLE Instruction
+(
+    ins_id INT AUTO_INCREMENT PRIMARY KEY,
+    ins_title VARCHAR(100) NOT NULL,
+    ins_description VARCHAR(300) NOT NULL,
+    int_attachment VARCHAR(200),
+    course_id INT,
+    batch_id INT,
+    ins_type VARCHAR(50) NOT NULL,
+    CONSTRAINT FK_ins_course_id FOREIGN KEY (course_id)
+    REFERENCES Course(course_id),
+    CONSTRAINT FK_ins_batch_id FOREIGN KEY (batch_id)
+    REFERENCES Batch(batch_id)
+);
+
+CREATE TABLE StudyMaterial
+(
+    sm_id INT AUTO_INCREMENT PRIMARY KEY,
+    sm_title VARCHAR(100) NOT NULL,
+    sub_id INT,
+    course_id INT,
+    batch_id INT,
+    sm_attachment VARCHAR(200),
+    CONSTRAINT FK_sm_course_id FOREIGN KEY (course_id)
+    REFERENCES Course(course_id),
+    CONSTRAINT FK_sm_batch_id FOREIGN KEY (batch_id)
+    REFERENCES Batch(batch_id),
+    CONSTRAINT FK_sm_sub_id FOREIGN KEY (sub_id)
+    REFERENCES Subject(sub_id)
+);
+
+CREATE TABLE ClassType
+(
+    classtype_id INT AUTO_INCREMENT PRIMARY KEY,
+    classtype_name VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE DailySchedule
+(
+    dsch_id INT AUTO_INCREMENT PRIMARY KEY,
+    dsch_date DATE NOT NULL,
+    classtype_id INT,
+    dsch_start TIME NOT NULL,
+    dsch_end TIME NOT NULL,
+    venue_id INT,
+    sub_id INT,
+    course_id INT,
+    batch_id INT,
+    fac_id INT,
+    CONSTRAINT FK_dsch_course_id FOREIGN KEY (course_id)
+    REFERENCES Course(course_id),
+    CONSTRAINT FK_dsch_batch_id FOREIGN KEY (batch_id)
+    REFERENCES Batch(batch_id),
+    CONSTRAINT FK_dsch_sub_id FOREIGN KEY (sub_id)
+    REFERENCES Subject(sub_id),
+    CONSTRAINT FK_dsch_fac_id FOREIGN KEY (fac_id)
+    REFERENCES Faculty(fac_id),
+    CONSTRAINT FK_dsch_venue_id FOREIGN KEY (venue_id)
+    REFERENCES Venue(venue_id),
+    CONSTRAINT FK_dsch_classtype_id FOREIGN KEY (classtype_id)
+    REFERENCES ClassType(classtype_id)
+);
+
+CREATE TABLE Performance
+(
+    per_id INT AUTO_INCREMENT PRIMARY KEY,
+    sub_id INT,
+    per_theorymarks FLOAT NOT NULL,
+    per_labmarks FLOAT NOT NULL,
+    per_internalmarks FLOAT NOT NULL,
+    per_total FLOAT NOT NULL,
+    per_maxmarks FLOAT NOT NULL,
+    per_status VARCHAR(50) NOT NULL,
+    stud_id INT,
+    CONSTRAINT FK_per_stud_id FOREIGN KEY (stud_id)
+    REFERENCES Student(stud_id),
+    CONSTRAINT FK_per_sub_id FOREIGN KEY (sub_id)
+    REFERENCES Subject(sub_id)
+);
+
+CREATE TABLE StudRank
+(
+    rank_id INT AUTO_INCREMENT PRIMARY KEY,
+    per_id INT,
+    stud_id INT,
+    CONSTRAINT FK_rank_stud_id FOREIGN KEY (stud_id)
+    REFERENCES Student(stud_id),
+    CONSTRAINT FK_rank_per_id FOREIGN KEY (per_id)
+    REFERENCES Performance(per_id)
+);
+
+mysqldump -u ab_project -p cdac_project > prodb.sql
