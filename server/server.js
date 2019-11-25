@@ -17,6 +17,11 @@ const routerCourseSub = require('./coursesub')
 const routerQuestion = require('./question')
 const routerOptions = require('./options')
 const routerQsAns = require('./qsans')
+const routerPer = require('./performance')
+const routerDailySchedule = require('./dailyschedule')
+const routerInstruction = require('./instruction')
+const routerStudyMaterial = require('./studymaterial')
+const routerRank = require('./rank')
 
 const app = express()
 
@@ -47,6 +52,11 @@ app.use('/coursesub', routerCourseSub)
 app.use('/question', routerQuestion)
 app.use('/options', routerOptions)
 app.use('/qsans', routerQsAns)
+app.use('/performance', routerPer)
+app.use('/dailyschedule', routerDailySchedule)
+app.use('/instruction', routerInstruction)
+app.use('/studymaterial', routerStudyMaterial)
+app.use('/rank', routerRank)
 
 app.listen(4000, '0.0.0.0', () => {
     console.log('server started  on port 4000')
