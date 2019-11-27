@@ -1,0 +1,35 @@
+<h1>Students</h1>
+
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>Student Id</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>PRN no</th>
+      <th>Gender</th>
+      <th>Birth Date</th>
+      <th>Profile pic</th>
+      <th>Batch</th>
+      <th>Course</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of students">
+      <td>{{student.stud_id}}</td>
+      <td>{{student.stud_name}}</td>
+      <td>{{student.stud_email}}</td>
+      <td>{{student.stud_prn}}</td>
+      <td>{{student.stud_gender}}</td>
+      <td>{{student.stud_bdate}}</td>
+      <td>{{student.stud_propic}}</td>
+      <td>{{student.course_id}}</td>
+      <td>{{student.batch_id}}</td>
+      <td>
+        <button class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
+        <button style="margin-left: 10px;" class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i></button>
+      </td>
+    </tr>
+  </tbody>
+</table>
