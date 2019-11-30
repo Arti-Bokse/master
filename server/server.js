@@ -37,6 +37,7 @@ app.use(function(req, res, next) {
 
 app.use(bodyParser.json())
 app.use(express.static('FacProPic'))
+app.use(express.static('StudProPic'))
 app.use('/student', routerStudent)
 app.use('/faculty', routerFaculty)
 app.use('/facultytype', routerFacultyType)

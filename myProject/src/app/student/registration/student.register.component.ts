@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { StudentService } from '../student.service';
 import * as toastr from 'toastr'
 import { Router } from '@angular/router';
+import { CourseService } from 'src/app/course/course.service';
+import { BatchService } from 'src/app/batch/batch.service';
 
 @Component({
   selector: 'app-student-register',
@@ -11,7 +13,8 @@ import { Router } from '@angular/router';
 
 export class StudentRegisterComponent implements OnInit {
 
-  facultyTypes = []
+  courses=[]
+  batches=[]
 
   stud_name = ''
   stud_email= ''
@@ -26,8 +29,33 @@ export class StudentRegisterComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private courseservice: CourseService,
+    private batchservice: BatchService,
     private studentService: StudentService) {
-  }
+      this.courseservice
+      .get()
+      .subscribe(response => {
+        if (response['status'] == 'success') {
+          this.courses = response['data']
+          this.course_id = this.courses[0].id
+        } else {
+          console.log(response['error'])
+        }
+      })
+
+      this.batchservice
+      .get()
+      .subscribe(response => {
+        if (response['status'] == 'success') {
+          this.batches = response['data']
+          console.log(response);
+          
+          this.batch_id = this.batches[0].id
+        } else {
+          console.log(response['error'])
+        }
+      })
+    }
 
   ngOnInit() { }
 
@@ -42,7 +70,7 @@ export class StudentRegisterComponent implements OnInit {
       .subscribe(response => {
         if (response['status'] == 'success') {
           toastr.success('added student successfully')
-          this.router.navigate(['/stud-login'])
+          this.router.navigate(['/student_list'])
         } else {
           console.log(response['error'])
         }

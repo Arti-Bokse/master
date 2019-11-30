@@ -1,0 +1,27 @@
+<h1>Faculty Type</h1>
+<div class="container">
+  <div class="form-group">
+    <a routerLink="/factype-add" class="btn btn-success pull-right">Add Faculty Type</a>
+  </div> 
+  <br><br>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Faculty tpye Id</th>
+        <th>Faculty tpye Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let factype of factypes">
+        <td>{{factype.factype_id}}</td>
+        <td>{{factype.factype_name}}</td>
+        <td>
+          <button style="margin-left: 10px;" (click)="onDelete(factype.factype_id)" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
+          <button style="margin-left: 10px;" class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+

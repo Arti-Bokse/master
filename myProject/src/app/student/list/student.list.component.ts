@@ -28,6 +28,18 @@ export class StudentListComponent implements OnInit {
       })
   }
 
+  onDelete(id: number) {
+    this.service
+      .deleteStudent(id)
+      .subscribe(response => {
+        if (response['status'] == 'success') {
+          this.getStudents()
+        } else {
+          console.log(response['error'])
+        }
+      })
+  }
+
   ngOnInit() { }
 }
 

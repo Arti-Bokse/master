@@ -15,4 +15,16 @@ export class FacultyTypeService {
     return this.http.get(this.url)
   }
 
+  addFactype(factype_name: string) {
+    const body = {
+      factype_name: factype_name
+    }
+
+    return this.http.post(this.url, body)
+  }
+
+  deleteFactype(id: number) {
+    return this.http.delete(this.url + '/' + id)
+  }
+
 }

@@ -14,6 +14,22 @@ import { FacultyRegisterComponent } from './faculty/registration/faculty.registe
 import { FacultyTypeService } from 'src/app/facultytype/facultytype.service';
 import { RouterModule, Route } from '@angular/router'
 import { FacultyListComponent } from './faculty/list/faculty.list.component';
+import { CourseListComponent } from './course/list/course.list.component';
+import { CourseService } from './course/course.service';
+import { CourseAddComponent } from './course/add/course.add.component';
+import { BatchListComponent } from './batch/list/batch.list.component';
+import { BatchService } from './batch/batch.service';
+import { BatchAddComponent } from './batch/add/batch.add.component';
+import { StudentRegisterComponent } from './student/registration/student.register.component';
+import { FactypeAddComponent } from './facultytype/add/facultytype.add.component';
+import { FactypeListComponent } from './facultytype/list/facultytype.list.component';
+import { VenueListComponent } from './venue/list/venue.list.component';
+import { VenueService } from './venue/venue.service';
+import { VenueAddComponent } from './venue/add/venue.add.component';
+import { ClasstypeAddComponent } from './classtype/add/classtype.add.component';
+import { ClasstypeListComponent } from './classtype/list/classtype.list.component';
+import { ClasstypeService } from './classtype/classtype.service';
+
 
 const routes: Route[] = [
   // { path: '', redirectTo: '/user-login', pathMatch: 'full' },
@@ -24,9 +40,18 @@ const routes: Route[] = [
   { path: 'user-login', component: FacultyLoginComponent },
   { path: 'user-register', component: FacultyRegisterComponent },
   { path: 'student_list', component: StudentListComponent },
-  { path: 'faculty-list', component: FacultyListComponent }
-
-
+  { path: 'faculty-list', component: FacultyListComponent },
+  { path: 'course-list', component: CourseListComponent },
+  { path: 'course-add', component: CourseAddComponent },
+  { path: 'batch-list', component: BatchListComponent },
+  { path: 'batch-add', component: BatchAddComponent },
+  { path: 'stud-register', component: StudentRegisterComponent },
+  { path: 'factype-list', component: FactypeListComponent },
+  { path: 'factype-add', component: FactypeAddComponent },
+  { path: 'venue-list', component: VenueListComponent },
+  { path: 'venue-add', component: VenueAddComponent },
+  { path: 'classtype-list', component: ClasstypeListComponent },
+  { path: 'classtype-add', component: ClasstypeAddComponent }
   // error component
   // - will be launched only when the path is not found
   //{ path: '**', component: NotFoundErrorComponent}
@@ -38,10 +63,21 @@ const routes: Route[] = [
     StudentListComponent,
     FacultyLoginComponent,
     FacultyRegisterComponent,
-    FacultyListComponent
+    FacultyListComponent,
+    CourseListComponent,
+    CourseAddComponent,
+    BatchListComponent,
+    BatchAddComponent,
+    StudentRegisterComponent,
+    FactypeAddComponent,
+    FactypeListComponent,
+    VenueListComponent,
+    VenueAddComponent,
+    ClasstypeAddComponent,
+    ClasstypeListComponent
   ],
   imports: [
-  BrowserModule,
+    BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
@@ -50,7 +86,11 @@ const routes: Route[] = [
   providers: [
     StudentService,
     FacultyService,
-    FacultyTypeService
+    FacultyTypeService,
+    CourseService,
+    BatchService,
+    VenueService,
+    ClasstypeService
   ],
   bootstrap: [AppComponent]
 })

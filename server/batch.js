@@ -6,7 +6,7 @@ const router = express.Router()
 
 router.get('/', (request, response) => {
     const connection = db.connect()
-    const statement = `select * from Batch`
+    const statement = `select * from Batch b INNER JOIN Course c ON b.course_id=c.course_id`
     
     connection.query(statement, (error, data) => {
         connection.end()

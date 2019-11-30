@@ -23,11 +23,11 @@
       <td>{{student.stud_prn}}</td>
       <td>{{student.stud_gender}}</td>
       <td>{{student.stud_bdate}}</td>
-      <td>{{student.stud_propic}}</td>
-      <td>{{student.course_id}}</td>
-      <td>{{student.batch_id}}</td>
+      <td><img src="http://localhost:4000/{{student.stud_propic}}" alt=""></td>
+      <td>{{student.course_name}}</td>
+      <td>{{student.batch_name}}</td>
       <td>
-        <button class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
+        <button style="margin-left: 10px;" (click)="onDelete(student.stud_id)" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
         <button style="margin-left: 10px;" class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i></button>
       </td>
     </tr>

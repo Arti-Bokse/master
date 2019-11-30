@@ -1,26 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { CourseService } from '../course.service';
+import { BatchService } from '../batch.service';
 
 @Component({
-  selector: 'app-course-list',
-  templateUrl:'./course.list.component.html',
-  styleUrls: ['./course.list.component.css']
+  selector: 'app-batch-list',
+  templateUrl:'./batch.list.component.html',
+  styleUrls: ['./batch.list.component.css']
 })
 
-export class CourseListComponent implements OnInit {
-  courses: any[]
-  service: CourseService
+export class BatchListComponent implements OnInit {
+  batches: any[]
+  service: BatchService
 
-  constructor(service: CourseService) {
+  constructor(service: BatchService) {
     this.service = service
-    this.getCourse()
+    this.getBatch()
   }
 
-  getCourse() {
+  getBatch() {
     this.service.get()
       .subscribe((response) => {
         if (response['status'] == 'success') {
-          this.courses = response['data']
+          this.batches = response['data']
         } else {
           alert('error occured:')
           console.log(response['error'])
@@ -30,10 +30,10 @@ export class CourseListComponent implements OnInit {
 
   onDelete(id: number) {
     this.service
-      .deleteCourse(id)
+      .deleteBatch(id)
       .subscribe(response => {
         if (response['status'] == 'success') {
-          this.getCourse()
+          this.getBatch()
         } else {
           console.log(response['error'])
         }

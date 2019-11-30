@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()
-export class CourseService {
+export class ClasstypeService {
 
   http: HttpClient
-  url = 'http://localhost:4000/course'
+  url = 'http://localhost:4000/classtype'
 
   constructor(http: HttpClient) { 
     this.http=http
@@ -15,17 +15,17 @@ export class CourseService {
     return this.http.get(this.url)
   }
 
-  addCourse(course_name: string) {
+  addClasstype(classtype_name: string) {
 
-    console.log(course_name)
+    console.log(classtype_name)
     const body = {
-      course_name: course_name
+      classtype_name: classtype_name
     }
 
     return this.http.post(this.url, body)
   }
 
-  deleteCourse(id: number) {
+  deleteClassType(id: number) {
     return this.http.delete(this.url + '/' + id)
   }
 

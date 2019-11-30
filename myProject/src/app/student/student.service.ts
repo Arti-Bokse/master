@@ -42,7 +42,7 @@ export class StudentService {
     return this.http.post(this.url + '/register', body)
   }
 
-  deleteFaculty(id: number) {
+  deleteStudent(id: number) {
     return this.http.delete(this.url + '/' + id)
   }
 

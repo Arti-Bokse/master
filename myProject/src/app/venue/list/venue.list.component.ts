@@ -1,26 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { CourseService } from '../course.service';
+import { VenueService } from '../venue.service';
 
 @Component({
-  selector: 'app-course-list',
-  templateUrl:'./course.list.component.html',
-  styleUrls: ['./course.list.component.css']
+  selector: 'app-venue-list',
+  templateUrl:'./venue.list.component.html',
+  styleUrls: ['./venue.list.component.css']
 })
 
-export class CourseListComponent implements OnInit {
-  courses: any[]
-  service: CourseService
+export class VenueListComponent implements OnInit {
+  venues: any[]
+  service: VenueService
 
-  constructor(service: CourseService) {
+  constructor(service: VenueService) {
     this.service = service
-    this.getCourse()
+    this.getVenue()
   }
 
-  getCourse() {
+  getVenue() {
     this.service.get()
       .subscribe((response) => {
         if (response['status'] == 'success') {
-          this.courses = response['data']
+          this.venues = response['data']
         } else {
           alert('error occured:')
           console.log(response['error'])
@@ -30,10 +30,10 @@ export class CourseListComponent implements OnInit {
 
   onDelete(id: number) {
     this.service
-      .deleteCourse(id)
+      .deleteVenue(id)
       .subscribe(response => {
         if (response['status'] == 'success') {
-          this.getCourse()
+          this.getVenue()
         } else {
           console.log(response['error'])
         }
