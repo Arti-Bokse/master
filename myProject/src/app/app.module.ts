@@ -29,6 +29,15 @@ import { VenueAddComponent } from './venue/add/venue.add.component';
 import { ClasstypeAddComponent } from './classtype/add/classtype.add.component';
 import { ClasstypeListComponent } from './classtype/list/classtype.list.component';
 import { ClasstypeService } from './classtype/classtype.service';
+import { SubjectAddComponent } from './subject/add/subject.add.component';
+import { SubjectListComponent } from './subject/list/subject.list.component';
+import { SubjectService } from './subject/subject.service';
+import { CourseSubAddComponent } from './coursesub/add/coursesub.add.component';
+import { CourseSubListComponent } from './coursesub/list/coursesub.list.component';
+import { CourseSubService } from './coursesub/coursesub.service';
+import { CoursecoService } from './courseco/courseco.service';
+import { CourseCoListComponent } from './courseco/list/courseco.list.component';
+import { CourseCoAddComponent } from './courseco/add/courseco.add.component';
 
 
 const routes: Route[] = [
@@ -36,7 +45,6 @@ const routes: Route[] = [
 
   // the default component
   { path: '', component: FacultyLoginComponent },
-
   { path: 'user-login', component: FacultyLoginComponent },
   { path: 'user-register', component: FacultyRegisterComponent },
   { path: 'student_list', component: StudentListComponent },
@@ -51,7 +59,13 @@ const routes: Route[] = [
   { path: 'venue-list', component: VenueListComponent },
   { path: 'venue-add', component: VenueAddComponent },
   { path: 'classtype-list', component: ClasstypeListComponent },
-  { path: 'classtype-add', component: ClasstypeAddComponent }
+  { path: 'classtype-add', component: ClasstypeAddComponent },
+  { path: 'subject-list', component: SubjectListComponent },
+  { path: 'subject-add', component: SubjectAddComponent },
+  { path: 'coursesub-list', component: CourseSubListComponent },
+  { path: 'coursesub-add', component: CourseSubAddComponent },
+  { path: 'courseco-list', component: CourseCoListComponent },
+  { path: 'courseco-add', component: CourseCoAddComponent }
   // error component
   // - will be launched only when the path is not found
   //{ path: '**', component: NotFoundErrorComponent}
@@ -74,7 +88,13 @@ const routes: Route[] = [
     VenueListComponent,
     VenueAddComponent,
     ClasstypeAddComponent,
-    ClasstypeListComponent
+    ClasstypeListComponent,
+    SubjectAddComponent,
+    SubjectListComponent,
+    CourseSubAddComponent,
+    CourseSubListComponent,
+    CourseCoListComponent,
+    CourseCoAddComponent
   ],
   imports: [
     BrowserModule,
@@ -90,7 +110,10 @@ const routes: Route[] = [
     CourseService,
     BatchService,
     VenueService,
-    ClasstypeService
+    ClasstypeService,
+    SubjectService,
+    CourseSubService,
+    CoursecoService
   ],
   bootstrap: [AppComponent]
 })

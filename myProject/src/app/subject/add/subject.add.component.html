@@ -1,0 +1,23 @@
+<h1>Add Subject</h1>
+
+
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <div class="login">
+
+            <div class="form">
+                <div class="form-group">
+                    <label for="">Subject Name</label>
+                    <input [(ngModel)]="subject_name" type="text" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <button (click)="onSubjectAdd()" class="btn btn-success">Subject Add</button>
+                    <a routerLink="/subject-list" class="btn btn-danger pull-right">Cancel</a>
+                </div> 
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4"></div>
+</div>
