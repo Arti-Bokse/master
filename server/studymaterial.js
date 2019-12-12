@@ -1,12 +1,14 @@
 const db = require('./db')
 const utils = require('./utils')
 const express = require('express')
+const multer =require('multer')
+const upload = multer({ dest: './StudyMaterial/'})
 
 const router = express.Router()
 
 router.get('/', (request, response) => {
     const connection = db.connect()
-    const statement = `select * from StudyMaterial`
+    const statement = `select * from StudyMaterial sm INNER JOIN Subject s ON sm.sub_id=s.sub_id INNER JOIN Course c ON sm.course_id=c.course_id INNER JOIN Batch b ON sm.batch_id=b.batch_id`
     
     connection.query(statement, (error, data) => {
         connection.end()
@@ -14,8 +16,10 @@ router.get('/', (request, response) => {
     })
 })
 
-router.post('/', (request, response) => {
-    const {sm_title,sub_id,course_id,batch_id,sm_attachment} = request.body
+router.post('/',upload.single('sm_attachment'), (request, response) => {
+    const {sm_title,sub_id,course_id,batch_id} = request.body
+
+    const sm_attachment = request.file.filename
 
     const connection = db.connect()
     // insert a new record

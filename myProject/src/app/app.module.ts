@@ -38,6 +38,12 @@ import { CourseSubService } from './coursesub/coursesub.service';
 import { CoursecoService } from './courseco/courseco.service';
 import { CourseCoListComponent } from './courseco/list/courseco.list.component';
 import { CourseCoAddComponent } from './courseco/add/courseco.add.component';
+import { StudyMaterialAddComponent } from './studymaterial/add/studymaterial.add.component';
+import { StudyMaterialListComponent } from './studymaterial/list/studymaterial.list.component';
+import { StudyMaterialService } from './studymaterial/studymaterial.service';
+import { InstructionService } from './instruction/instruction.service';
+import { InstructionAddComponent } from './instruction/add/instruction.add.component';
+import { InstructionListComponent } from './instruction/list/instruction.list.component';
 
 
 const routes: Route[] = [
@@ -65,7 +71,11 @@ const routes: Route[] = [
   { path: 'coursesub-list', component: CourseSubListComponent },
   { path: 'coursesub-add', component: CourseSubAddComponent },
   { path: 'courseco-list', component: CourseCoListComponent },
-  { path: 'courseco-add', component: CourseCoAddComponent }
+  { path: 'courseco-add', component: CourseCoAddComponent },
+  { path: 'studymaterial-list', component: StudyMaterialListComponent },
+  { path: 'studymaterial-add', component: StudyMaterialAddComponent },
+  { path: 'instruction-list', component: InstructionListComponent },
+  { path: 'instruction-add', component: InstructionAddComponent }
   // error component
   // - will be launched only when the path is not found
   //{ path: '**', component: NotFoundErrorComponent}
@@ -94,7 +104,11 @@ const routes: Route[] = [
     CourseSubAddComponent,
     CourseSubListComponent,
     CourseCoListComponent,
-    CourseCoAddComponent
+    CourseCoAddComponent,
+    StudyMaterialAddComponent,
+    StudyMaterialListComponent,
+    InstructionAddComponent,
+    InstructionListComponent
   ],
   imports: [
     BrowserModule,
@@ -113,7 +127,9 @@ const routes: Route[] = [
     ClasstypeService,
     SubjectService,
     CourseSubService,
-    CoursecoService
+    CoursecoService,
+    StudyMaterialService,
+    InstructionService
   ],
   bootstrap: [AppComponent]
 })

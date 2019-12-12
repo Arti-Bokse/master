@@ -1,0 +1,55 @@
+<h1>Add Instruction</h1>
+
+
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <div class="login">
+
+            <div class="form">
+                <div class="form-group">
+                    <label for="">Title</label>
+                    <input [(ngModel)]="ins_title" type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="">Description</label>
+                    <input [(ngModel)]="ins_description" type="text" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="">Type</label>
+                    <select [(ngModel)]="ins_type" class="form-control" (change)="changeType($event)">
+                      <option value="all">All</option>
+                      <option value="batchwise">Batch wise instructions</option>
+                    </select>
+                </div>
+
+                <div class="form-group" *ngIf="edited">
+                    <label for="">Select Course</label>
+                    <select [(ngModel)]="course_id" class="form-control">
+                      <option
+                        *ngFor="let course of courses"
+                        [value]="course.course_id">{{course.course_name}}</option>
+                    </select>
+                </div>
+                <div class="form-group" *ngIf="edited">
+                    <label for="">Select Batch</label>
+                    <select [(ngModel)]="batch_id" class="form-control">
+                      <option
+                        *ngFor="let batch of batches"
+                        [value]="batch.batch_id">{{batch.batch_name}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="">Select attachment</label>
+                    <input (change)="onSelectFile($event)" type="file" class="form-control">
+                </div>
+                <div class="form-group">
+                    <button (click)="onInstructionAdd()" class="btn btn-success">Add</button>
+                    <a routerLink="/instruction-list" class="btn btn-danger pull-right">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4"></div>
+</div>

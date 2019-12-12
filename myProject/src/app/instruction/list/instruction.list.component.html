@@ -1,0 +1,36 @@
+<h1>Instructions</h1>
+
+<div class="form-group">
+  <a routerLink="/instruction-add" class="btn btn-success pull-right">Add Instructions</a>
+</div>
+<br><br>
+
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>Instruction Id</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Course</th>
+      <th>Batch</th>
+      <th>Instruction Type</th>
+      <th>Attachment</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let instruction of instructions">
+      <td>{{instruction.ins_id}}</td>
+      <td>{{instruction.ins_title}}</td>
+      <td>{{instruction.ins_description}}</td>
+      <td>{{instruction.course_name}}</td>
+      <td>{{instruction.batch_name}}</td>
+      <td>{{instruction.ins_type}}</td>
+      <td><a href="http://localhost:4000/{{instruction.int_attachment}}" download><img src="../assets/zipfile.png" alt=""></a></td>
+      <td>
+        <button style="margin-left: 10px;" (click)="onDelete(instruction.ins_id)" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
+        <button style="margin-left: 10px;" class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i></button>
+      </td>
+    </tr>
+  </tbody>
+</table>
