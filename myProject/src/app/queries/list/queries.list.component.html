@@ -1,0 +1,47 @@
+<h1>Queries</h1>
+<div class="container">
+  <div class="form-group">
+    <a (click)="onAdd()" class="btn btn-success pull-right">Add Queries</a>
+  </div> 
+  <br><br>
+  <div *ngFor="let query of queries" class="query-font seperator">
+    <div class="row">
+      <div class="col-md-9 question">
+          <strong>Query : {{query.qry_id}} - </strong>
+          {{query.qry_title}}<br>
+          {{query.qry_description}}<br>
+          <strong>Query By :</strong> {{query.stud_id}}<br>
+      </div>
+      <div class="col-md-3">
+        <div class="row">
+            <div class="col-md-9"></div>
+            <div class="col-md-3">
+                <button style="margin-left: 10px;" (click)="onDelete(query.qry_id)" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-9 answer">
+          <div *ngIf="query.qryans_ans!=null">
+              {{query.qryans_ans}}
+              <div class="row">
+                  <div class="col-md-11"></div>
+                    <div class="col-md-1">
+                        <button style="margin-left: 10px;" class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i></button>
+                    </div>
+                </div>
+          </div>
+          <div *ngIf="query.qryans_ans==null">
+              <a (click)="onAdd()" class="btn btn-success pull-right">Click here to add answer button</a>
+              
+          </div>
+          
+      </div>
+     
+    </div>
+  </div>
+  
+</div>
+

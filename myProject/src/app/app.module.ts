@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { StudentService } from './student/student.service';
 import { StudentListComponent } from './student/list/student.list.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms'
+import { FormsModule} from '@angular/forms'
 import { FacultyLoginComponent } from './faculty/login/faculty.login.component';
 import { FacultyService } from './faculty/faculty.service';
 import { FacultyRegisterComponent } from './faculty/registration/faculty.register.component';
@@ -44,6 +44,12 @@ import { StudyMaterialService } from './studymaterial/studymaterial.service';
 import { InstructionService } from './instruction/instruction.service';
 import { InstructionAddComponent } from './instruction/add/instruction.add.component';
 import { InstructionListComponent } from './instruction/list/instruction.list.component';
+import { DailyScheduleListComponent } from './dailyschedule/list/dailyschedule.list.component';
+import { DailyScheduleService } from './dailyschedule/dailyschedule.service';
+import { DailyScheduleAddComponent } from './dailyschedule/add/dailyschedule.add.component';
+import { QueriesAddComponent } from './queries/add/queries.add.component';
+import { QueriesListComponent } from './queries/list/queries.list.component';
+import { QueriesService } from './queries/queries.service';
 
 
 const routes: Route[] = [
@@ -75,7 +81,11 @@ const routes: Route[] = [
   { path: 'studymaterial-list', component: StudyMaterialListComponent },
   { path: 'studymaterial-add', component: StudyMaterialAddComponent },
   { path: 'instruction-list', component: InstructionListComponent },
-  { path: 'instruction-add', component: InstructionAddComponent }
+  { path: 'instruction-add', component: InstructionAddComponent },
+  { path: 'dailyschedule-list', component: DailyScheduleListComponent },
+  { path: 'dailyschedule-add', component: DailyScheduleAddComponent },
+  { path: 'query-list', component: QueriesListComponent },
+  { path: 'query-add', component: QueriesAddComponent }
   // error component
   // - will be launched only when the path is not found
   //{ path: '**', component: NotFoundErrorComponent}
@@ -108,7 +118,11 @@ const routes: Route[] = [
     StudyMaterialAddComponent,
     StudyMaterialListComponent,
     InstructionAddComponent,
-    InstructionListComponent
+    InstructionListComponent,
+    DailyScheduleListComponent,
+    DailyScheduleAddComponent,
+    QueriesAddComponent,
+    QueriesListComponent
   ],
   imports: [
     BrowserModule,
@@ -129,7 +143,9 @@ const routes: Route[] = [
     CourseSubService,
     CoursecoService,
     StudyMaterialService,
-    InstructionService
+    InstructionService,
+    DailyScheduleService,
+    QueriesService
   ],
   bootstrap: [AppComponent]
 })
