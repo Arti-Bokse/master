@@ -1,0 +1,34 @@
+<h1>Add Query</h1>
+
+
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <div class="login">
+
+            <div class="form">
+
+                <div class="row">
+                    <div class="col-md-10 question">
+                        <strong>Query : {{qry_id}} - </strong>
+                        {{qry_title}}<br>
+                        {{qry_description}}<br>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="">Description</label>
+                    <textarea [(ngModel)]="qryans_ans" class="form-control" rows="9" placeholder="Type you answer" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <button (click)="onQueryUpdate()" class="btn btn-success" *ngIf="update">Update Query</button>
+                    <button (click)="onQueryAdd()" class="btn btn-success" *ngIf="add">Query Add</button>
+                    
+                    <a routerLink="/query-list" class="btn btn-danger pull-right">Cancel</a>
+                </div> 
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4"></div>
+</div>

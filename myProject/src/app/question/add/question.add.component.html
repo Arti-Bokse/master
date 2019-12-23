@@ -1,0 +1,51 @@
+<h1>Add Query</h1>
+
+
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <div class="login">
+
+            <div class="form">
+
+                <div class="form-group">
+                    <label for="">Title</label>
+                    <input [(ngModel)]="qry_title" type="text" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="">Description</label>
+                    <textarea [(ngModel)]="qry_description" class="form-control" rows="9" placeholder="Type you query" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="">Student</label>
+                    <input [(ngModel)]="stud_id" type="text" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="">Type</label>
+                    <select [(ngModel)]="ins_type" class="form-control" (change)="changeType($event)">
+                        <option value="general">General</option>
+                        <option value="subrelated">Subject related</option>
+                    </select>
+                </div>
+
+                <div class="form-group" *ngIf="edited">
+                    <label for="">Select Subject</label>
+                    <select [(ngModel)]="qry_type" class="form-control">
+                      <option
+                        *ngFor="let subject of subjects"
+                        [value]="subject.sub_name">{{subject.sub_name}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <button (click)="onQueryAdd()" class="btn btn-success">Query Add</button>
+                    <a routerLink="/query-list" class="btn btn-danger pull-right">Cancel</a>
+                </div> 
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4"></div>
+</div>

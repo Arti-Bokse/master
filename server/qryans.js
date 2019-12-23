@@ -29,9 +29,9 @@ router.post('/', (request, response) => {
 
 router.put('/:qryans_id', (request, response) => {
     const {qryans_id} = request.params
-    const {qryans_ans, qry_id} = request.body
+    const {qryans_ans} = request.body
     const connection = db.connect()
-    const statement = `update QryAns set qryans_ans='${qryans_ans}', qry_id='${qry_id}' where qryans_id = ${qryans_id}`
+    const statement = `update QryAns set qryans_ans='${qryans_ans}' where qryans_id = ${qryans_id}`
     connection.query(statement, (error, data) => {
         connection.end()
         response.send(utils.createResult(error, data))

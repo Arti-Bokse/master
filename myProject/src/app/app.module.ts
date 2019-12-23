@@ -50,6 +50,8 @@ import { DailyScheduleAddComponent } from './dailyschedule/add/dailyschedule.add
 import { QueriesAddComponent } from './queries/add/queries.add.component';
 import { QueriesListComponent } from './queries/list/queries.list.component';
 import { QueriesService } from './queries/queries.service';
+import { QryAnsAddComponent } from './qryans/add/qryans.add.component';
+import { QryAnsService } from './qryans/qryans.service';
 
 
 const routes: Route[] = [
@@ -85,7 +87,8 @@ const routes: Route[] = [
   { path: 'dailyschedule-list', component: DailyScheduleListComponent },
   { path: 'dailyschedule-add', component: DailyScheduleAddComponent },
   { path: 'query-list', component: QueriesListComponent },
-  { path: 'query-add', component: QueriesAddComponent }
+  { path: 'query-add', component: QueriesAddComponent },
+  { path: 'qryans-add', component: QryAnsAddComponent }
   // error component
   // - will be launched only when the path is not found
   //{ path: '**', component: NotFoundErrorComponent}
@@ -122,7 +125,8 @@ const routes: Route[] = [
     DailyScheduleListComponent,
     DailyScheduleAddComponent,
     QueriesAddComponent,
-    QueriesListComponent
+    QueriesListComponent,
+    QryAnsAddComponent
   ],
   imports: [
     BrowserModule,
@@ -145,7 +149,8 @@ const routes: Route[] = [
     StudyMaterialService,
     InstructionService,
     DailyScheduleService,
-    QueriesService
+    QueriesService,
+    QryAnsService
   ],
   bootstrap: [AppComponent]
 })

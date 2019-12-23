@@ -6,7 +6,7 @@ const router = express.Router()
 
 router.get('/', (request, response) => {
     const connection = db.connect()
-    const statement = `select * from Question`
+    const statement = `select * from Question q INNER JOIN QsAns qa ON q.qs_id=qa.qs_id INNER JOIN Options o ON o.opt_id=qa.opt_id`
     
     connection.query(statement, (error, data) => {
         connection.end()

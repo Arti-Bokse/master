@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { QueriesService } from '../queries.service';
+//import { QuestionService } from '../queries.service';
 import { Router } from '@angular/router';
+import { QuestionService } from '../question.service';
 
 @Component({
-  selector: 'app-queries-list',
-  templateUrl:'./queries.list.component.html',
-  styleUrls: ['./queries.list.component.css']
+  selector: 'app-question-list',
+  templateUrl:'./question.list.component.html',
+  styleUrls: ['./question.list.component.css']
 })
 
 export class QueriesListComponent implements OnInit {
-  queries: any[]
-  service: QueriesService
+  questions: any[]
+  service: QuestionService
 
-  constructor(service: QueriesService,private router: Router,) {
+  constructor(service: QuestionService,private router: Router,) {
     this.service = service
     this.getQueries()
   }
@@ -21,7 +22,7 @@ export class QueriesListComponent implements OnInit {
     this.service.get()
       .subscribe((response) => {
         if (response['status'] == 'success') {
-          this.queries = response['data']
+          this.questions = response['data']
         } else {
           alert('error occured:')
           console.log(response['error'])

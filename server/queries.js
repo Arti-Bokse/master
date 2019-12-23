@@ -6,7 +6,7 @@ const router = express.Router()
 
 router.get('/', (request, response) => {
     const connection = db.connect()
-    const statement = `select q.qry_id,q.qry_title,q.qry_description,q.qry_type,q.stud_id,qa.qryans_ans from Queries q LEFT OUTER JOIN QryAns qa on q.qry_id=qa.qry_id`
+    const statement = `select q.qry_id,q.qry_title,q.qry_description,q.qry_type,q.stud_id,qa.qryans_ans,qa.qryans_id from Queries q LEFT OUTER JOIN QryAns qa on q.qry_id=qa.qry_id`
     
     connection.query(statement, (error, data) => {
         connection.end()
