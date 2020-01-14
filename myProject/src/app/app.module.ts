@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { StudentService } from './student/student.service';
 import { StudentListComponent } from './student/list/student.list.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule} from '@angular/forms'
+import { FormsModule, ReactiveFormsModule} from '@angular/forms'
 import { FacultyLoginComponent } from './faculty/login/faculty.login.component';
 import { FacultyService } from './faculty/faculty.service';
 import { FacultyRegisterComponent } from './faculty/registration/faculty.register.component';
@@ -52,6 +52,9 @@ import { QueriesListComponent } from './queries/list/queries.list.component';
 import { QueriesService } from './queries/queries.service';
 import { QryAnsAddComponent } from './qryans/add/qryans.add.component';
 import { QryAnsService } from './qryans/qryans.service';
+import { QuestionService } from './question/question.service';
+import { QuestionListComponent } from './question/list/question.list.component';
+import { QuestionAddComponent } from './question/add/question.add.component';
 
 
 const routes: Route[] = [
@@ -88,7 +91,9 @@ const routes: Route[] = [
   { path: 'dailyschedule-add', component: DailyScheduleAddComponent },
   { path: 'query-list', component: QueriesListComponent },
   { path: 'query-add', component: QueriesAddComponent },
-  { path: 'qryans-add', component: QryAnsAddComponent }
+  { path: 'qryans-add', component: QryAnsAddComponent },
+  { path: 'question-list', component: QuestionListComponent },
+  { path: 'question-add', component: QuestionAddComponent }
   // error component
   // - will be launched only when the path is not found
   //{ path: '**', component: NotFoundErrorComponent}
@@ -126,13 +131,16 @@ const routes: Route[] = [
     DailyScheduleAddComponent,
     QueriesAddComponent,
     QueriesListComponent,
-    QryAnsAddComponent
+    QryAnsAddComponent,
+    QuestionListComponent,
+    QuestionAddComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(routes)
   ],
   providers: [
@@ -150,7 +158,8 @@ const routes: Route[] = [
     InstructionService,
     DailyScheduleService,
     QueriesService,
-    QryAnsService
+    QryAnsService,
+    QuestionService
   ],
   bootstrap: [AppComponent]
 })

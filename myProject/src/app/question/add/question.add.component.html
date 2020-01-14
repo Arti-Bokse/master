@@ -1,4 +1,4 @@
-<h1>Add Query</h1>
+<h1>Add Question</h1>
 
 
 <div class="row">
@@ -8,42 +8,73 @@
 
             <div class="form">
 
-                <div class="form-group">
-                    <label for="">Title</label>
-                    <input [(ngModel)]="qry_title" type="text" class="form-control">
-                </div>
+                    <div class="form-group">
+                            <label for="">Student</label>
+                            <input [(ngModel)]="stud_id" type="text" class="form-control">
+                        </div>
 
                 <div class="form-group">
-                    <label for="">Description</label>
-                    <textarea [(ngModel)]="qry_description" class="form-control" rows="9" placeholder="Type you query" required></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label for="">Student</label>
-                    <input [(ngModel)]="stud_id" type="text" class="form-control">
-                </div>
-
-                <div class="form-group">
-                    <label for="">Type</label>
-                    <select [(ngModel)]="ins_type" class="form-control" (change)="changeType($event)">
-                        <option value="general">General</option>
-                        <option value="subrelated">Subject related</option>
-                    </select>
-                </div>
-
-                <div class="form-group" *ngIf="edited">
                     <label for="">Select Subject</label>
-                    <select [(ngModel)]="qry_type" class="form-control">
-                      <option
-                        *ngFor="let subject of subjects"
-                        [value]="subject.sub_name">{{subject.sub_name}}</option>
+                    <select [(ngModel)]="sub_id" class="form-control">
+                        <option *ngFor="let subject of subjects" [value]="subject.sub_id">{{subject.sub_name}}
+                        </option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <button (click)="onQueryAdd()" class="btn btn-success">Query Add</button>
-                    <a routerLink="/query-list" class="btn btn-danger pull-right">Cancel</a>
-                </div> 
+                    <label for="">Question</label>
+                    <textarea [(ngModel)]="qs_description" class="form-control" rows="9" placeholder="Type you query"
+                        required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="">Option 1</label>
+                    <input [(ngModel)]="qs_opt_one" type="text" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="">Option 2</label>
+                    <input [(ngModel)]="qs_opt_two" type="text" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="">Option 3</label>
+                    <input [(ngModel)]="qs_opt_three" type="text" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="">Option 4</label>
+                    <input [(ngModel)]="qs_opt_four" type="text" class="form-control">
+                </div>
+
+                <div class="form-group" *ngIf="addopt">
+                    <button (click)="onOptAdd()" class="btn btn-success">Add Options</button>
+                </div>
+
+                <div *ngIf="submit">
+
+                    <div class="form-group">
+                        <label for="">Select Answer</label>
+                        <select [(ngModel)]="qs_ans" class="form-control">
+                            <option *ngFor="let option of options" [value]="option">{{option}}
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Answer Description</label>
+                        <textarea [(ngModel)]="qs_ans_description" class="form-control" rows="9"
+                            placeholder="Type you query" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <button (click)="onQueryAdd()" class="btn btn-success">Question Add</button>
+                        <a routerLink="/question-list" class="btn btn-danger pull-right">Cancel</a>
+                    </div>
+
+                </div>
+
+
             </div>
         </div>
     </div>

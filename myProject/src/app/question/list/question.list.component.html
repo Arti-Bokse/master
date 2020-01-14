@@ -1,44 +1,29 @@
-<h1>Queries</h1>
+<h1>Questions</h1>
 <div class="container">
   <div class="form-group">
-    <a routerLink="/query-add" class="btn btn-success pull-right">Add Queries</a>
-  </div> 
+  </div>
   <br><br>
-  <div *ngFor="let query of queries" class="query-font seperator">
+  <div class="query-font">
+    <label for="">Select Subject</label>
+    <select [(ngModel)]="sub_id" class="form-control" (change)="changeSub($event)">
+      <option *ngFor="let subject of subjects" [value]="subject.sub_id">{{subject.sub_name}}</option>
+    </select>
+  </div><br><br>
+  <div *ngFor="let question of questions; let index = index" class="query-font seperator">
     <div class="row">
-      <div class="col-md-10 question">
-          <strong>Query : {{query.qry_id}} - </strong>
-          {{query.qry_description}}<br>
+      <div class="col-md-12 question">
+        <button style="margin-left: 10px;" (click)="onDelete(question.qs_id)" class="btn btn-danger pull-right"><i
+            class="glyphicon glyphicon-trash"></i></button>
+        <strong>Question : {{index+1}} - </strong>
+        {{question.qs_description}}<br><br>
+        a. {{question.qs_opt_one}}<br>
+        b. {{question.qs_opt_two}}<br>
+        c. {{question.qs_opt_three}}<br>
+        d. {{question.qs_opt_four}}<br><br>
+        <strong><span class="answer">Answer : {{question.qs_ans}}</span></strong><br><br>
+        Description : {{question.qs_ans_description}}<br><br>
+        <span class="pull-right qsby">Posted By : {{question.stud_name}}</span>
       </div>
-      <div class="col-md-2">
-        <div class="row">
-            <div class="col-md-9"></div>
-            <div class="col-md-3">
-                <button style="margin-left: 10px;" (click)="onDelete(query.qry_id)" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
-            </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-2"></div>
-      <div class="col-md-10 answer">
-          <div *ngIf="query.qryans_ans!=null">
-              {{query.qryans_ans}}
-              <div class="row">
-                  <div class="col-md-11"></div>
-                    <div class="col-md-1">
-                        <button (click)="onAdd(query.qry_id,query.qry_title,query.qry_description,query.qryans_ans,query.qryans_id)" style="margin-left: 10px;" class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i></button>
-                    </div>
-                </div>
-          </div>
-          <div *ngIf="query.qryans_ans==null">
-              <a (click)="onAdd(query.qry_id,query.qry_title,query.qry_description,query.qryans_ans,query.qryans_id)" class="btn btn-success pull-right">Click here to add answer button</a>
-          </div>
-          
-      </div>
-     
     </div>
   </div>
-  
 </div>
-

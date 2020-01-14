@@ -2,28 +2,36 @@ import { Component, OnInit } from '@angular/core';
 import * as toastr from 'toastr'
 import { Router } from '@angular/router';
 import { SubjectService } from '../../subject/subject.service';
-import { QueriesService } from '../queries.service';
+import { QuestionService } from '../question.service';
 
 @Component({
-  selector: 'app-queries-register',
-  templateUrl:'./queries.add.component.html',
-  styleUrls: ['./queries.add.component.css']
+  selector: 'app-question-register',
+  templateUrl:'./question.add.component.html',
+  styleUrls: ['./question.add.component.css']
 })
 
-export class QueriesAddComponent implements OnInit {
+export class QuestionAddComponent implements OnInit {
 
   subjects=[]
+  options=[]
 
-  qry_title=''
-  qry_description=''
-  qry_type=''
+  //qs_description, qs_opt_one, qs_opt_two, qs_opt_three, qs_opt_four, qs_ans, qs_ans_description, sub_id
+  qs_description=''
+  qs_ans=''
+  qs_ans_description=''
+  qs_opt_one=''
+  qs_opt_two=''
+  qs_opt_three=''
+  qs_opt_four=''
   stud_id:number
+  sub_id:number
 
-  public edited = false;
+  public submit = false;
+  public addopt = true;
 
   constructor(
     private router: Router,
-    private queriesService:QueriesService,
+    private questionService:QuestionService,
     private subjectService: SubjectService) {
 
       this.subjectService
@@ -31,34 +39,31 @@ export class QueriesAddComponent implements OnInit {
       .subscribe(response => {
         if (response['status'] == 'success') {
           this.subjects = response['data']
-          this.qry_type = this.subjects[0].id
+          this.sub_id = this.subjects[0].id
         } else {
           console.log(response['error'])
         }
       })
     }
 
-    changeType(e) {
-    
-      if((e.target.value)=="general"){
-        this.edited=false
-        this.qry_type='other'
-      }
-      else if((e.target.value)=="subrelated"){
-        this.edited=true
-      }
-      
-    }
-
   ngOnInit() {}
+
+  onOptAdd(){
+    this.addopt=false
+    this.submit=true
+    this.options.push(this.qs_opt_one)
+    this.options.push(this.qs_opt_two)
+    this.options.push(this.qs_opt_three)
+    this.options.push(this.qs_opt_four)
+  }
   
   onQueryAdd() {
-    this.queriesService
-      .addQueris(this.qry_title,this.qry_description,this.qry_type,this.stud_id)
+    this.questionService
+      .addQueris(this.qs_description,this.qs_opt_one,this.qs_opt_two,this.qs_opt_three,this.qs_opt_four,this.qs_ans,this.qs_ans_description,this.sub_id,this.stud_id)
       .subscribe(response => {
         if (response['status'] == 'success') {
-          toastr.success('added Query successfully')
-          this.router.navigate(['/query-list'])
+          toastr.success('added Qustion successfully')
+          this.router.navigate(['/question-list'])
         } else {
           console.log(response['error'])
         }

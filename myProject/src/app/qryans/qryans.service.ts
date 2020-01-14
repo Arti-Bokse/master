@@ -22,7 +22,6 @@ export class QryAnsService {
   }
 
   updateQryAns(qryans_ans: string,qryans_id:number) {
-console.log(qryans_id)
     const body = {
       qryans_ans: qryans_ans
     }

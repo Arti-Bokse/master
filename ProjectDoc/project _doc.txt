@@ -298,4 +298,26 @@ CREATE TABLE StudRank
     REFERENCES Performance(per_id)
 );
 
+CREATE TABLE Question
+(
+    qs_id INT AUTO_INCREMENT PRIMARY KEY,
+    qs_description VARCHAR(200) NOT NULL,
+    qs_opt_one VARCHAR(200) NOT NULL,
+    qs_opt_two VARCHAR(200) NOT NULL,
+    qs_opt_three VARCHAR(200) NOT NULL,
+    qs_opt_four VARCHAR(200) NOT NULL,
+    qs_ans VARCHAR(200) NOT NULL,
+    qs_ans_description VARCHAR(400),
+    sub_id INT,
+    stud_id INT,
+    CONSTRAINT FK_qs_stud_id FOREIGN KEY (stud_id)
+    REFERENCES Student(stud_id),
+    CONSTRAINT FK_qs_sub_id FOREIGN KEY (sub_id)
+    REFERENCES Subject(sub_id)
+);
+
+INSERT INTO
+Question
+VALUES(1,"Use of Compiler is ___","Execution","Loading","Running","Compiling","Compiling","Compiler compiles code to assembly language",1,32179);
+
 mysqldump -u ab_project -p cdac_project > prodb.sql

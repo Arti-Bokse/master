@@ -11,18 +11,23 @@ export class QuestionService {
     this.http=http
   }
 
-  get() {
-    return this.http.get(this.url)
+  get(sub_id:number) {
+    return this.http.get(this.url+ '/' + sub_id)
   }
 
-  addQueris(qry_title: string,qry_description:string,qry_type:string,stud_id:number) {
+  addQueris(qs_description: string,qs_opt_one:string,qs_opt_two:string,qs_opt_three:string,qs_opt_four:string,qs_ans:string,qs_ans_description:string,sub_id:number,stud_id:number) {
 
-    console.log(qry_type)
+    //console.log(qry_type)
 
     const body = {
-      qry_title: qry_title,
-      qry_description:qry_description,
-      qry_type:qry_type,
+      qs_description: qs_description,
+      qs_opt_one:qs_opt_one,
+      qs_opt_two:qs_opt_two,
+      qs_opt_three:qs_opt_three,
+      qs_opt_four:qs_opt_four,
+      qs_ans:qs_ans,
+      qs_ans_description:qs_ans_description,
+      sub_id:sub_id,
       stud_id:stud_id
     }
 
