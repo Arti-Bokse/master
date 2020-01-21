@@ -30,6 +30,12 @@ export class FacultyLoginComponent implements OnInit {
         .subscribe(response => {
           if (response['status'] == 'success') {
             toastr.success('authenticated')
+
+            sessionStorage['login_status'] = '1'
+
+            sessionStorage['id'] = response['data']['fac_id']
+            sessionStorage['name'] = response['data']['fac_name']
+            sessionStorage['role'] = response['data']['role']
             this.router.navigate(['/student_list'])
           } else {
             toastr.error(response['error'])

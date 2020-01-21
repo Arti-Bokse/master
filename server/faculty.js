@@ -18,7 +18,7 @@ router.get('/', (request, response) => {
 })
 
 router.post('/register',upload.single('fac_propic'), (request, response) => {
-    const {fac_name, fac_email, factype_id, fac_gender, fac_bdate, fac_password} = request.body
+    const {fac_name, fac_email, factype_id, fac_gender, fac_bdate, fac_password, role} = request.body
     const encryptedPassword = '' + cryptoJs.MD5(fac_password)
 
     const fac_propic = request.file.filename
@@ -29,7 +29,7 @@ router.post('/register',upload.single('fac_propic'), (request, response) => {
 
         if (users.length == 0) {
             
-            const statement = `INSERT INTO Faculty (fac_name, fac_email, factype_id, fac_gender, fac_propic, fac_bdate, fac_password) values ('${fac_name}', '${fac_email}', ${factype_id}, '${fac_gender}', '${fac_propic}', '${fac_bdate}', '${encryptedPassword}')`
+            const statement = `INSERT INTO Faculty (fac_name, fac_email, factype_id, fac_gender, fac_propic, fac_bdate, fac_password, role) values ('${fac_name}', '${fac_email}', ${factype_id}, '${fac_gender}', '${fac_propic}', '${fac_bdate}', '${encryptedPassword}', '${role}')`
             connection.query(statement, (error, data) => {
                 connection.end()
                 response.send(utils.createResult(error, data))
@@ -45,10 +45,10 @@ router.post('/register',upload.single('fac_propic'), (request, response) => {
 
 router.put('/:fac_id', (request, response) => {
     const { fac_id } = request.params
-    const {fac_name, fac_email, factype_id, fac_gender, fac_propic, fac_bdate, fac_password} = request.body
+    const {fac_name, fac_email, factype_id, fac_gender, fac_propic, fac_bdate, fac_password, role} = request.body
     const encryptedPassword = '' + cryptoJs.MD5(fac_password)
     const connection = db.connect()
-    const statement = `update Faculty set fac_name='${fac_name}', fac_email='${fac_email}', factype_id=${factype_id}, fac_gender='${fac_gender}', fac_propic='${fac_propic}', fac_bdate='${fac_bdate}',fac_password = '${encryptedPassword}' where fac_id = ${fac_id}`
+    const statement = `update Faculty set fac_name='${fac_name}', fac_email='${fac_email}', factype_id=${factype_id}, fac_gender='${fac_gender}', fac_propic='${fac_propic}', fac_bdate='${fac_bdate}',fac_password = '${encryptedPassword}', role='${role}' where fac_id = ${fac_id}`
     connection.query(statement, (error, data) => {
         connection.end()
         response.send(utils.createResult(error, data))
@@ -79,8 +79,9 @@ router.post('/login', (request, response) => {
         } else {
             const user = users[0]
             const info = {
-                fac_email: user['fac_email'],
-                fac_password: user['fac_password']
+                fac_nmae: user['fac_name'],
+                fac_id: user['fac_id'],
+                role: user['role']
             }
             response.send(utils.createResult(null, info))
         }

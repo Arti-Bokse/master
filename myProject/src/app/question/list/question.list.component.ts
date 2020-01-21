@@ -17,6 +17,7 @@ export class QuestionListComponent implements OnInit {
   service: QuestionService
 
   sub_id:number
+  delete=true
 
   constructor(service: QuestionService,
     private subjectService: SubjectService,
@@ -33,6 +34,13 @@ export class QuestionListComponent implements OnInit {
         console.log(response['error'])
       }
     })
+
+    if(sessionStorage['role']=="Student"){
+      this.delete=false
+    }
+    if(sessionStorage['role']=="Admin"){
+      this.delete=true
+    }
     
   }
 

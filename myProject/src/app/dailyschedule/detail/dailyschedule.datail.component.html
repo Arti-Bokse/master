@@ -1,0 +1,21 @@
+<h1>Daily Schedule</h1>
+
+<br><br>
+
+<div *ngFor="let dailyschedule of dailyschedules; let index = index" class="query-font seperator container">
+  <div class="row">
+    <div class="col-md-12 question">
+
+      <strong>Date : {{index+1}} - </strong>
+      {{dailyschedule.dsch_date}}<br><br>
+      Class Type : {{dailyschedule.classtype_name}}<br>
+      Start Time :{{dailyschedule.dsch_start}}<br>
+      End Time : {{dailyschedule.dsch_end}}<br>
+      Subject Name : {{dailyschedule.sub_name}}<br>
+      Course Name : {{dailyschedule.course_name}}<br>
+      Batch Name : {{dailyschedule.batch_name}}<br>
+      Faculty : {{dailyschedule.fac_name}}<br><br>
+      <span class="pull-right qsby">Venue : {{dailyschedule.venue_name}}</span>
+    </div>
+  </div>
+</div>

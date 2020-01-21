@@ -1,7 +1,7 @@
 <h1>Queries</h1>
 <div class="container">
   <div class="form-group">
-    <a routerLink="/query-add" class="btn btn-success pull-right">Add Queries</a>
+    <a routerLink="/query-add" class="btn btn-success pull-right" *ngIf="addans">Add Queries</a>
   </div> 
   <br><br>
   <div *ngFor="let query of queries" class="query-font seperator">
@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-md-9"></div>
             <div class="col-md-3">
-                <button style="margin-left: 10px;" (click)="onDelete(query.qry_id)" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
+                <button style="margin-left: 10px;" (click)="onDelete(query.qry_id)" class="btn btn-danger" *ngIf="delete"><i class="glyphicon glyphicon-trash"></i></button>
             </div>
         </div>
       </div>
@@ -29,12 +29,12 @@
               <div class="row">
                   <div class="col-md-11"></div>
                     <div class="col-md-1">
-                        <button (click)="onAdd(query.qry_id,query.qry_title,query.qry_description,query.qryans_ans,query.qryans_id)" style="margin-left: 10px;" class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i></button>
+                        <button (click)="onAdd(query.qry_id,query.qry_title,query.qry_description,query.qryans_ans,query.qryans_id)" style="margin-left: 10px;" class="btn btn-warning" *ngIf="editans"><i class="glyphicon glyphicon-pencil"></i></button>
                     </div>
                 </div>
           </div>
           <div *ngIf="query.qryans_ans==null">
-              <a (click)="onAdd(query.qry_id,query.qry_title,query.qry_description,query.qryans_ans,query.qryans_id)" class="btn btn-success pull-right">Click here to add answer button</a>
+              <a (click)="onAdd(query.qry_id,query.qry_title,query.qry_description,query.qryans_ans,query.qryans_id)" class="btn btn-success pull-right" *ngIf="editans">Click here to add answer button</a>
           </div>
           
       </div>

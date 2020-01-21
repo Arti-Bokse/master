@@ -1,0 +1,18 @@
+<h1>Instructions</h1>
+
+<br><br>
+
+<div *ngFor="let instruction of instructions; let index = index" class="query-font seperator container">
+  <div class="row">
+    <div class="col-md-12 question">
+      
+      <strong>Instruction : {{index+1}} - </strong>
+      {{instruction.ins_title}}<br><br>
+      {{instruction.ins_description}}<br>
+      {{instruction.course_name}}<br>
+      {{instruction.batch_name}}<br><br>
+      <span class="pull-right qsby">Instruction Type : {{instruction.ins_type}}   <a href="http://localhost:4000/{{instruction.int_attachment}}" download><img
+            src="../assets/zipfile.png" alt=""></a></span>
+    </div>
+  </div>
+</div>

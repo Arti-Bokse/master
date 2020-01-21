@@ -1,21 +1,95 @@
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">Admin</a>
-      </div>
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">Page 1</a></li>
-        <li><a href="#">Page 2</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a routerLink="/user-register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a routerLink="/user-login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
+<nav class="navbar navbar-inverse" *ngIf="isAdmin()">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Welcome Admin</a>
     </div>
-  </nav>
+    <ul class="nav navbar-nav">
+      <li><a routerLink="/student_list">Student</a></li>
+      <li><a routerLink="/faculty-list">Faculty</a></li>
+      <li><a routerLink="/instruction-list">Instruction</a></li>
+      <li><a routerLink="/dailyschedule-list">Daily Schedule</a></li>
+      <li><a routerLink="/course-list">Course</a></li>
+      <li><a routerLink="/batch-list">Batch</a></li>
+      <li><a routerLink="/venue-list">Venue</a></li>
+      <li><a routerLink="/subject-list">Subject</a></li>
+      <li><a routerLink="/question-list">Question</a></li>
+      <li><a routerLink="/query-list">Quries</a></li>
+      <li><a routerLink="/factype-list">Faculty Type</a></li>
+      <li><a routerLink="/courseco-list">Course Coordinator</a></li>
+      <li><a routerLink="/coursesub-list">Course Wise Subject</a></li>
+      <li><a routerLink="/studymaterial-list">Study Material</a></li>
+      <li><a routerLink="/classtype-list">Class Type</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a><span class="glyphicon glyphicon-user"></span> Welcome {{username}}</a></li>
+      <li><a (click)="onAdminLogout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+    </ul>
+  </div>
+</nav>
 
-<div >
+<nav class="navbar navbar-inverse" *ngIf="isFaculty()">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Welcome Faculty</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="#">Page 1</a></li>
+      <li><a href="#">Page 2</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a><span class="glyphicon glyphicon-user"></span> Welcome {{username}}</a></li>
+      <li><a (click)="onLogout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+<nav class="navbar navbar-inverse" *ngIf="isStudent()">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Welcome Student</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a routerLink="/instruction-detail">Instruction</a></li>
+      <li><a routerLink="/dailyschedule-detail">Daily Schedule</a></li>
+      <li><a routerLink="/query-list">Quries</a></li>
+      <li><a routerLink="/question-list">Question</a></li>
+      <li><a routerLink="/question-add">Add New Question</a></li>
+      <li><a routerLink="/studymaterial-detail">Study Material</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a  routerLink="/student-profile"><span class="glyphicon glyphicon-user"></span> Welcome {{username}}</a></li>
+      <li><a (click)="onLogout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+<nav class="navbar navbar-inverse" *ngIf="isDefault()">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Welcome</a>
+    </div>
+    <ul class="nav navbar-nav">
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a routerLink="/stud-register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a routerLink="/student-login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- <div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <div class="pull-right">
+      <div class="message">Welcome {{username}}
+      </div>
+      <button (click)="onLogout()" class="btn btn-success ">Logout</button>
+    </div>
+  </div>
+</div> -->
+
+<div>
   <div class="row">
     <div class="col-md-12">
       <router-outlet></router-outlet>

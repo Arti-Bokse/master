@@ -1,0 +1,25 @@
+img.profile_pic{
+    margin-left: 10px;
+    width: 150px;
+    height: 150px;
+}
+div.candidate_name{
+    margin-top: 10px;
+}
+div.contact_info{
+    padding-top: 10px;
+}
+div.contact_info span{
+    margin-top: 10px;
+    margin-right: 5px;
+    font-size: 20px;
+}
+.profile{
+    background-color: azure;
+    padding: 100px;
+}
+.profile_row{
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

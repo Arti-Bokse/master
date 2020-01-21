@@ -17,8 +17,23 @@ router.get('/', (request, response) => {
     })
 })
 
+router.get('/:stud_id', (request, response) => {
+    const {stud_id} = request.params
+    const connection = db.connect()
+    const statement = `select * from Student s INNER JOIN Course c ON s.course_id=c.course_id INNER JOIN Batch b ON s.batch_id=b.batch_id WHERE stud_id=${stud_id}`
+    
+    connection.query(statement, (error, data) => {
+        connection.end()
+        if (data.length > 0) {
+            response.send(utils.createResult(error, data[0]))
+        } else {
+            response.send(utils.createResult('student does not exist'))
+        }
+    })
+})
+
 router.post('/register',upload.single('stud_propic'), (request, response) => {
-    const {stud_name, stud_email, stud_prn, stud_gender, stud_bdate, stud_password, course_id, batch_id} = request.body
+    const {stud_name, stud_email, stud_prn, stud_gender, stud_bdate, stud_password, course_id, batch_id, role} = request.body
     const encryptedPassword = '' + cryptoJs.MD5(stud_password)
 
     const stud_propic = request.file.filename
@@ -31,7 +46,7 @@ router.post('/register',upload.single('stud_propic'), (request, response) => {
             // user with the required email does not exist
 
             // insert a new record
-            const statement = `INSERT INTO Student (stud_name, stud_email, stud_prn, stud_gender, stud_bdate, stud_propic, stud_password, course_id, batch_id) values ('${stud_name}', '${stud_email}', ${stud_prn}, '${stud_gender}', '${stud_bdate}', '${stud_propic}', '${encryptedPassword}', ${course_id}, ${batch_id})`
+            const statement = `INSERT INTO Student (stud_name, stud_email, stud_prn, stud_gender, stud_bdate, stud_propic, stud_password, course_id, batch_id, role) values ('${stud_name}', '${stud_email}', ${stud_prn}, '${stud_gender}', '${stud_bdate}', '${stud_propic}', '${encryptedPassword}', ${course_id}, ${batch_id}, '${role}')`
             connection.query(statement, (error, data) => {
                 connection.end()
                 response.send(utils.createResult(error, data))
@@ -48,10 +63,10 @@ router.post('/register',upload.single('stud_propic'), (request, response) => {
 
 router.put('/:stud_id', (request, response) => {
     const {stud_id} = request.params
-    const {stud_name, stud_email, stud_prn, stud_gender, stud_bdate, stud_propic, stud_password, course_id, batch_id} = request.body
+    const {stud_name, stud_email, stud_prn, stud_gender, stud_bdate, stud_propic, stud_password, course_id, batch_id, role} = request.body
     const encryptedPassword = '' + cryptoJs.MD5(stud_password)
     const connection = db.connect()
-    const statement = `update Student set stud_name='${stud_name}', stud_email='${stud_email}', stud_prn=${stud_prn}, stud_gender='${stud_gender}', stud_bdate='${stud_bdate}', stud_propic='${stud_propic}',stud_password = '${encryptedPassword}', course_id=${course_id}, batch_id=${batch_id} where stud_id = ${stud_id}`
+    const statement = `update Student set stud_name='${stud_name}', stud_email='${stud_email}', stud_prn=${stud_prn}, stud_gender='${stud_gender}', stud_bdate='${stud_bdate}', stud_propic='${stud_propic}',stud_password = '${encryptedPassword}', course_id=${course_id}, batch_id=${batch_id}, role='${role}' where stud_id = ${stud_id}`
     connection.query(statement, (error, data) => {
         connection.end()
         response.send(utils.createResult(error, data))
@@ -72,10 +87,9 @@ router.post('/login', (request, response) => {
     const {stud_email, stud_password} = request.body
     const encryptedPassword = '' + cryptoJs.MD5(stud_password)
     const connection = db.connect()
-    const statement = `select * from Student where stud_email = '${stud_email}' and stud_password = '${stud_password}'`
+    const statement = `select * from Student where stud_email = '${stud_email}' and stud_password = '${encryptedPassword}'`
     connection.query(statement, (error, users) => {
         connection.end()
-        console.log(users);
         
         if (users.length == 0) {
             response.send(utils.createResult('user does not exist'))
@@ -83,7 +97,8 @@ router.post('/login', (request, response) => {
             const user = users[0]
             const info = {
                 stud_name: user['stud_name'],
-                stud_email: user['stud_email']
+                role: user['role'],
+                stud_id: user['stud_id']
             }
             response.send(utils.createResult(null, info))
         }

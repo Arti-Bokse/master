@@ -11,6 +11,18 @@ INSERT INTO
 Course
 VALUES(1,'PG-DMC');
 
+INSERT INTO 
+Course
+VALUES(2,'PG-DAC');
+
+INSERT INTO 
+Course
+VALUES(3,'PG-DBDA');
+
+INSERT INTO 
+Course
+VALUES(4,'PG-DESD');
+
 CREATE TABLE Batch
 (
     batch_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -22,7 +34,35 @@ CREATE TABLE Batch
 
 INSERT INTO 
 Batch
-VALUES(1,'DMC-AUG-2019[W2]',1);
+VALUES(1,'DMC-AUG-2019[W1]',1);
+
+INSERT INTO 
+Batch
+VALUES(2,'DMC-AUG-2019[W2]',1);
+
+INSERT INTO 
+Batch
+VALUES(3,'DAC-AUG-2019[D1]',2);
+
+INSERT INTO 
+Batch
+VALUES(4,'DAC-AUG-2019[D2]',2);
+
+INSERT INTO 
+Batch
+VALUES(5,'DBDA-AUG-2019[B1]',3);
+
+INSERT INTO 
+Batch
+VALUES(6,'DBDA-AUG-2019[B2]',3);
+
+INSERT INTO 
+Batch
+VALUES(7,'DESD-AUG-2019[E1]',4);
+
+INSERT INTO 
+Batch
+VALUES(8,'DESD-AUG-2019[E2]',4);
 
 CREATE TABLE Student
 (
@@ -155,12 +195,76 @@ VALUES(3,'Krishna');
 INSERT INTO
 Venue
 VALUES(4,'Koyana');
+INSERT INTO
+Venue
+VALUES(5,'Patliputra');
+INSERT INTO
+Venue
+VALUES(6,'Takshshila');
+INSERT INTO
+Venue
+VALUES(7,'Vikramshila');
+INSERT INTO
+Venue
+VALUES(8,'Torna');
 
 CREATE TABLE Subject
 (
     sub_id INT AUTO_INCREMENT PRIMARY KEY,
-    sub_name VARCHAR(50) NOT NULL,
+    sub_name VARCHAR(50) NOT NULL
 );
+
+INSERT INTO
+Subject
+VALUES(1,'Programming in C');
+
+INSERT INTO
+Subject
+VALUES(2,'Programming in C++');
+
+INSERT INTO
+Subject
+VALUES(3,'Core JAVA');
+
+INSERT INTO
+Subject
+VALUES(4,'Advance JAVA');
+
+INSERT INTO
+Subject
+VALUES(5,'Data Structure');
+
+INSERT INTO
+Subject
+VALUES(6,'Database');
+
+INSERT INTO
+Subject
+VALUES(7,'Operating System');
+
+INSERT INTO
+Subject
+VALUES(8,'Hybrid Programming');
+
+INSERT INTO
+Subject
+VALUES(9,'Android');
+
+INSERT INTO
+Subject
+VALUES(10,'Ios');
+
+INSERT INTO
+Subject
+VALUES(11,'Machine Learning');
+
+INSERT INTO
+Subject
+VALUES(12,'Python');
+
+INSERT INTO
+Subject
+VALUES(13,'.Net');
 
 CREATE TABLE CourseSub
 (
@@ -172,6 +276,10 @@ CREATE TABLE CourseSub
     CONSTRAINT FK_cosub_sub_id FOREIGN KEY (sub_id)
     REFERENCES Subject(sub_id)
 );
+
+INSERT INTO
+CourseSub
+VALUES(1,1,)
 
 CREATE TABLE Question
 (
@@ -243,6 +351,34 @@ CREATE TABLE ClassType
     classtype_id INT AUTO_INCREMENT PRIMARY KEY,
     classtype_name VARCHAR(50) NOT NULL
 );
+
+INSERT INTO
+ClassType
+VALUES(1,'Lecture');
+
+INSERT INTO
+ClassType
+VALUES(2,'Lab');
+
+INSERT INTO
+ClassType
+VALUES(3,'Mock Interviwes');
+
+INSERT INTO
+ClassType
+VALUES(4,'Orientation');
+
+INSERT INTO
+ClassType
+VALUES(5,'Hot seat activity');
+
+INSERT INTO
+ClassType
+VALUES(6,'Lab Test');
+
+INSERT INTO
+ClassType
+VALUES(7,'Theory Test');
 
 CREATE TABLE DailySchedule
 (

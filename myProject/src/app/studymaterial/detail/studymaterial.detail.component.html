@@ -1,0 +1,21 @@
+<h1>Study Materials</h1>
+
+<br><br>
+
+<div *ngFor="let studymaterial of studymaterials; let index = index" class="query-font seperator container">
+    <div class="row">
+      <div class="col-md-12 question">
+  
+        <strong>Sr. No : {{index+1}} - </strong>
+        {{studymaterial.sm_title}}<br>
+        Subject Name : {{studymaterial.sub_name}}<br>
+        Course Name : {{studymaterial.course_name}}<br>
+        Batch Name : {{studymaterial.batch_name}}<br>
+        <span class="pull-right qsby"><a href="http://localhost:4000/{{studymaterial.sm_attachment}}" download><img src="../assets/zipfile.png" alt=""></a></span>
+      </div>
+    </div>
+  </div>
+
+<table class="table table-striped table-bordered">
+  
+

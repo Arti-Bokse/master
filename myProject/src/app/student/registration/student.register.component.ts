@@ -70,7 +70,7 @@ export class StudentRegisterComponent implements OnInit {
       .subscribe(response => {
         if (response['status'] == 'success') {
           toastr.success('added student successfully')
-          this.router.navigate(['/student_list'])
+          this.router.navigate(['/student-login'])
         } else {
           console.log(response['error'])
         }

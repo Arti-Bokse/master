@@ -1,0 +1,33 @@
+img{
+    width: 35px;
+    height: 35px;
+}
+h1 {
+    text-align: center;
+  }
+  .query-font{
+    font-size: 17px;
+    
+  }
+  
+  .question{
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color:#f0f0f0;
+    color: black
+  }
+
+  .answer{
+    color: green
+  }
+
+  .qsby{
+    font-size: 15px;
+  }
+
+  .seperator{
+    border-bottom: #777 solid 1px;
+    margin-bottom:10px ;
+    padding-bottom: 10px;
+  }

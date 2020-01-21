@@ -55,16 +55,20 @@ import { QryAnsService } from './qryans/qryans.service';
 import { QuestionService } from './question/question.service';
 import { QuestionListComponent } from './question/list/question.list.component';
 import { QuestionAddComponent } from './question/add/question.add.component';
-
+import { StudentLoginComponent } from './student/login/student.login.component';
+import { StudentProfileComponent } from './student/profile/student.profile.component';
+import { InstructionDetailComponent } from './instruction/detail/instruction.detail.component';
+import { DailyScheduleDetailComponent } from './dailyschedule/detail/dailyschedule.detail.component';
+import { StudyMaterialDetailComponent } from './studymaterial/detail/studymaterial.detail.component';
 
 const routes: Route[] = [
   // { path: '', redirectTo: '/user-login', pathMatch: 'full' },
 
   // the default component
-  { path: '', component: FacultyLoginComponent },
+  { path: '', component: StudentLoginComponent },
   { path: 'user-login', component: FacultyLoginComponent },
   { path: 'user-register', component: FacultyRegisterComponent },
-  { path: 'student_list', component: StudentListComponent },
+  { path: 'student_list', component: StudentListComponent},
   { path: 'faculty-list', component: FacultyListComponent },
   { path: 'course-list', component: CourseListComponent },
   { path: 'course-add', component: CourseAddComponent },
@@ -84,16 +88,21 @@ const routes: Route[] = [
   { path: 'courseco-list', component: CourseCoListComponent },
   { path: 'courseco-add', component: CourseCoAddComponent },
   { path: 'studymaterial-list', component: StudyMaterialListComponent },
+  { path: 'studymaterial-detail', component: StudyMaterialDetailComponent },
   { path: 'studymaterial-add', component: StudyMaterialAddComponent },
   { path: 'instruction-list', component: InstructionListComponent },
+  { path: 'instruction-detail', component: InstructionDetailComponent },
   { path: 'instruction-add', component: InstructionAddComponent },
   { path: 'dailyschedule-list', component: DailyScheduleListComponent },
+  { path: 'dailyschedule-detail', component: DailyScheduleDetailComponent },
   { path: 'dailyschedule-add', component: DailyScheduleAddComponent },
   { path: 'query-list', component: QueriesListComponent },
   { path: 'query-add', component: QueriesAddComponent },
   { path: 'qryans-add', component: QryAnsAddComponent },
   { path: 'question-list', component: QuestionListComponent },
-  { path: 'question-add', component: QuestionAddComponent }
+  { path: 'question-add', component: QuestionAddComponent },
+  { path: 'student-login', component: StudentLoginComponent },
+  { path: 'student-profile', component: StudentProfileComponent }
   // error component
   // - will be launched only when the path is not found
   //{ path: '**', component: NotFoundErrorComponent}
@@ -133,7 +142,12 @@ const routes: Route[] = [
     QueriesListComponent,
     QryAnsAddComponent,
     QuestionListComponent,
-    QuestionAddComponent
+    QuestionAddComponent,
+    StudentLoginComponent,
+    StudentProfileComponent,
+    InstructionDetailComponent,
+    DailyScheduleDetailComponent,
+    StudyMaterialDetailComponent
   ],
   imports: [
     BrowserModule,

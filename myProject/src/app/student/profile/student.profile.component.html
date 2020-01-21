@@ -1,0 +1,46 @@
+<div class="container profile">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-4 candidate_name">
+            <h1 *ngIf="student != undefined">{{student.stud_name}}</h1>
+        </div>
+        <div class="col-md-2">
+            <img class="profile_pic img-circle" src="http://localhost:4000/{{student.stud_propic}}">
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <br><br><br><br>
+    <div class="row" *ngIf="student != undefined">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="row profile_row">
+                <div class="col-md-4">Email</div>
+                <div class="col-md-8">: {{student.stud_email}}</div>
+            </div>
+            <div class="row profile_row">
+                <div class="col-md-4">PRN no.</div>
+                <div class="col-md-8">: {{student.stud_prn}}</div>
+            </div>
+            <div class="row profile_row">
+                <div class="col-md-4">Gender</div>
+                <div class="col-md-8">: {{student.stud_gender}}</div>
+            </div>
+            <div class="row profile_row">
+                <div class="col-md-4">Birth Date</div>
+                <div class="col-md-8">: {{student.stud_bdate}}</div>
+            </div>
+            <div class="row profile_row">
+                <div class="col-md-4">Course Name</div>
+                <div class="col-md-8">: {{student.course_name}}</div>
+            </div>
+            <div class="row profile_row">
+                <div class="col-md-4">Batch Name</div>
+                <div class="col-md-8">: {{student.batch_name}}</div>
+            </div>
+            <div class="row profile_row">
+                <button style="margin-left: 10px;" (click)="onDelete(instruction.ins_id)" class="btn btn-success">Edit Profile</button>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>

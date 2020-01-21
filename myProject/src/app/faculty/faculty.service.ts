@@ -1,14 +1,27 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 
 @Injectable()
 export class FacultyService {
 
-  http: HttpClient
+  //http: HttpClient
   url = 'http://localhost:4000/faculty'
 
-  constructor(http: HttpClient) { 
-    this.http=http
+  constructor(
+    private router: Router,
+    private http: HttpClient) { }
+
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    // check if user is already logged in
+    // if (sessionStorage['login_status'] == '1') {
+    if (localStorage['login_status'] == '1') {
+      return true
+    }
+
+    // if user is not logged yet, load the login page
+    this.router.navigate(['/user-login'])
+    return false
   }
 
   get() {
@@ -33,6 +46,7 @@ export class FacultyService {
     body.append('fac_propic',fac_propic)
     body.append('fac_bdate',fac_bdate)
     body.append('fac_password',fac_password)
+    body.append('role',"Faculty")
 
     return this.http.post(this.url + '/register', body)
   }

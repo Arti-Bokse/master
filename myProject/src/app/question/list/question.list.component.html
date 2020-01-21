@@ -12,7 +12,7 @@
   <div *ngFor="let question of questions; let index = index" class="query-font seperator">
     <div class="row">
       <div class="col-md-12 question">
-        <button style="margin-left: 10px;" (click)="onDelete(question.qs_id)" class="btn btn-danger pull-right"><i
+        <button style="margin-left: 10px;" (click)="onDelete(question.qs_id)" class="btn btn-danger pull-right" *ngIf="delete"><i
             class="glyphicon glyphicon-trash"></i></button>
         <strong>Question : {{index+1}} - </strong>
         {{question.qs_description}}<br><br>

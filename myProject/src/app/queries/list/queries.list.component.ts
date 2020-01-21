@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-queries-list',
-  templateUrl:'./queries.list.component.html',
+  templateUrl: './queries.list.component.html',
   styleUrls: ['./queries.list.component.css']
 })
 
@@ -12,9 +12,23 @@ export class QueriesListComponent implements OnInit {
   queries: any[]
   service: QueriesService
 
-  constructor(service: QueriesService,private router: Router,) {
+  delete=true
+  editans=true
+  addans=true
+
+  constructor(service: QueriesService, private router: Router, ) {
     this.service = service
     this.getQueries()
+    if(sessionStorage['role']=='Student'){
+      this.delete=false
+      this.editans=false
+      this.addans=true
+    }
+    if(sessionStorage['role']=='Admin' || sessionStorage['role']=='Faculty'){
+      this.delete=true
+      this.editans=true
+      this.addans=false
+    }
   }
 
   getQueries() {
@@ -41,7 +55,7 @@ export class QueriesListComponent implements OnInit {
       })
   }
 
-  onAdd(qry_id:number,qry_title:string,qry_description:string,qryans_ans:string,qryans_id:number){
+  onAdd(qry_id: number, qry_title: string, qry_description: string, qryans_ans: string, qryans_id: number) {
     sessionStorage['qry_desc'] = qry_description
     sessionStorage['qry_id'] = qry_id
     sessionStorage['qry_title'] = qry_title
