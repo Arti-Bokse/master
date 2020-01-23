@@ -1,121 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:padding="16dp"
-    android:layout_centerVertical="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.RegistrationActivity"
     android:background="@drawable/login_bg">
 
-    <TextView
-        android:textSize="20sp"
-        android:text="Name"
-        android:textStyle="bold"
-        android:textColor="#ffffff"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_centerVertical="true">
 
-    <EditText
-        android:id="@+id/editName"
-        android:inputType="textEmailAddress"
-        android:textColor="#ffffff"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <TextView
+            android:textSize="17sp"
+            android:text="Name"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-    <TextView
-        android:textSize="20sp"
-        android:text="Email"
-        android:textStyle="bold"
-        android:textColor="#ffffff"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/editName"
+            android:inputType="textEmailAddress"
+            android:textColor="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-    <EditText
-        android:id="@+id/editEmail"
-        android:inputType="textEmailAddress"
-        android:textColor="#ffffff"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <TextView
+            android:textSize="17sp"
+            android:text="Email"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-    <TextView
-        android:textSize="20sp"
-        android:text="PRN No."
-        android:textStyle="bold"
-        android:textColor="#ffffff"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/editEmail"
+            android:inputType="textEmailAddress"
+            android:textColor="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-    <EditText
-        android:id="@+id/editPrn"
-        android:inputType="textEmailAddress"
-        android:textColor="#ffffff"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <TextView
+            android:textSize="17sp"
+            android:text="PRN No."
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-    <TextView
-        android:textSize="20sp"
-        android:text="Gender"
-        android:textStyle="bold"
-        android:textColor="#ffffff"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/editPrn"
+            android:inputType="textEmailAddress"
+            android:textColor="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-    <Spinner
-        android:id="@+id/spinnerDepartment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <TextView
+            android:textSize="17sp"
+            android:text="Gender"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-    <TextView
-        android:textSize="20sp"
-        android:text="Email"
-        android:textStyle="bold"
-        android:textColor="#ffffff"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <Spinner
+            android:id="@+id/spinnerDepartment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-    <EditText
-        android:id="@+id/editEmail"
-        android:inputType="textEmailAddress"
-        android:textColor="#ffffff"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <TextView
+            android:textSize="17sp"
+            android:text="Date of Birth"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-    <TextView
-        android:textSize="20sp"
-        android:text="Password"
-        android:textStyle="bold"
-        android:textColor="#ffffff"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/editdob"
+            android:inputType="textEmailAddress"
+            android:textColor="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-    <EditText
-        android:id="@+id/editPassword"
-        android:inputType="textPassword"
-        android:textColor="#ffffff"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <RelativeLayout
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:text="Register"
-            android:background="@drawable/white_bg_rounded_corner_rectangle"
-            android:layout_width="100dp"
+        <TextView
+            android:textSize="17sp"
+            android:text="Profile pic"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <Button
-            android:layout_alignParentRight="true"
-            android:text="Cancle"
-            android:background="@drawable/white_bg_rounded_corner_rectangle"
-            android:layout_width="100dp"
+            android:onClick="onUpload"
+            android:text="Upload Photo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_bg_rounded_corner_rectangle"/>
+
+        <TextView
+            android:textSize="17sp"
+            android:text="Password"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-    </RelativeLayout>
+        <EditText
+            android:id="@+id/editPassword"
+            android:inputType="textPassword"
+            android:textColor="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-</LinearLayout>
+        <RelativeLayout
+            android:layout_marginTop="17dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:text="Register"
+                android:background="@drawable/white_bg_rounded_corner_rectangle"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:layout_alignParentRight="true"
+                android:text="Cancle"
+                android:background="@drawable/white_bg_rounded_corner_rectangle"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</ScrollView>
