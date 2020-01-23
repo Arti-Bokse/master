@@ -49,15 +49,15 @@
         <Button
             android:text="Login"
             android:onClick="onLogin"
-            android:background="@color/white_color"
-            android:layout_width="wrap_content"
+            android:background="@drawable/white_bg_rounded_corner_rectangle"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"/>
 
         <Button
             android:layout_alignParentRight="true"
             android:text="Register"
-            android:background="@color/white_color"
-            android:layout_width="wrap_content"
+            android:background="@drawable/white_bg_rounded_corner_rectangle"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"/>
 
     </RelativeLayout>
