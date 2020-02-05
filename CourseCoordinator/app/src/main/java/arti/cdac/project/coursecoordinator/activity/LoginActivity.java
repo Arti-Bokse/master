@@ -11,13 +11,18 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 
+import java.util.ArrayList;
+
 import arti.cdac.project.coursecoordinator.R;
 import arti.cdac.project.coursecoordinator.activity.HomeActivity;
 import arti.cdac.project.coursecoordinator.activity.MainActivity;
+import arti.cdac.project.coursecoordinator.model.Batch;
+import arti.cdac.project.coursecoordinator.model.Student;
 import arti.cdac.project.coursecoordinator.utils.Constants;
 import arti.cdac.project.coursecoordinator.utils.Utils;
 import butterknife.BindView;
@@ -27,6 +32,8 @@ public class LoginActivity extends AppCompatActivity {
 
     @BindView(R.id.editEmail) EditText editEmail;
     @BindView(R.id.editPassword) EditText editPassword;
+
+    ArrayList<Student> studentArrayList=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +72,20 @@ public class LoginActivity extends AppCompatActivity {
                         public void onCompleted(Exception e, JsonObject result) {
                             String status = result.get("status").getAsString();
                             if (status.equals("success")) {
+                                JsonObject jsonArray = result.get("data").getAsJsonObject();
+                                JsonObject object = jsonArray.getAsJsonObject();
+
+                                Student objectClass=new Student();
+                                objectClass.setStud_name(object.get("stud_name").getAsString());
+                                objectClass.setStud_email(object.get("stud_email").getAsString());
+                                objectClass.setStud_propic(object.get("stud_propic").getAsString());
+                                studentArrayList.add(objectClass);
+                                //return classArrayList;
+                                Log.e("batch",studentArrayList.toString());
                                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                intent.putExtra("name",studentArrayList.get(0).getStud_name());
+                                intent.putExtra("email",studentArrayList.get(0).getStud_email());
+                                intent.putExtra("pic",studentArrayList.get(0).getStud_propic());
                                 startActivity(intent);
                                 finish();
                             } else {
@@ -79,7 +99,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onRegister(View v) {
-        ///Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-        //startActivity(intent);
+        Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
+        startActivity(intent);
     }
 }

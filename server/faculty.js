@@ -79,7 +79,7 @@ router.post('/login', (request, response) => {
         } else {
             const user = users[0]
             const info = {
-                fac_nmae: user['fac_name'],
+                fac_name: user['fac_name'],
                 fac_id: user['fac_id'],
                 role: user['role']
             }

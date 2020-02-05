@@ -32,12 +32,45 @@ router.get('/:stud_id', (request, response) => {
     })
 })
 
+router.post('/profile', upload.single('photo'), (request, response) => {
+    const result = { status: request.file.filename }
+    response.send(result)
+})
+
 router.post('/register',upload.single('stud_propic'), (request, response) => {
     const {stud_name, stud_email, stud_prn, stud_gender, stud_bdate, stud_password, course_id, batch_id, role} = request.body
     const encryptedPassword = '' + cryptoJs.MD5(stud_password)
 
     const stud_propic = request.file.filename
 
+    const connection = db.connect()
+    const statement1 = `select * from Student where stud_email = '${stud_email}'`
+    connection.query(statement1, (error, users) => {
+
+        if (users.length == 0) {
+            // user with the required email does not exist
+
+            // insert a new record
+            const statement = `INSERT INTO Student (stud_name, stud_email, stud_prn, stud_gender, stud_bdate, stud_propic, stud_password, course_id, batch_id, role) values ('${stud_name}', '${stud_email}', ${stud_prn}, '${stud_gender}', '${stud_bdate}', '${stud_propic}', '${encryptedPassword}', ${course_id}, ${batch_id}, '${role}')`
+            connection.query(statement, (error, data) => {
+                connection.end()
+                response.send(utils.createResult(error, data))
+            })
+        } else {
+            // user with email already exists
+            connection.end()
+            response.send(utils.createResult('email exists. please use another email.'))
+        }
+
+    })
+    
+})
+
+router.post('/anregister', (request, response) => {
+    const {stud_name, stud_email, stud_prn, stud_gender, stud_bdate, stud_propic, stud_password, course_id, batch_id, role} = request.body
+    const encryptedPassword = '' + cryptoJs.MD5(stud_password)
+
+    console.log(stud_propic)
     const connection = db.connect()
     const statement1 = `select * from Student where stud_email = '${stud_email}'`
     connection.query(statement1, (error, users) => {
@@ -97,6 +130,8 @@ router.post('/login', (request, response) => {
             const user = users[0]
             const info = {
                 stud_name: user['stud_name'],
+                stud_email: user['stud_email'],
+                stud_propic: user['stud_email'],
                 role: user['role'],
                 stud_id: user['stud_id']
             }
